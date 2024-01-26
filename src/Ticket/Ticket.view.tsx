@@ -49,7 +49,7 @@ const TicketView = (props: ViewPropTypes) => {
                         />
                       </div>
                     ) : (
-                      <div className="cardUserImg">
+                      <div className={`cardUserImg ${filter['grouping'] === 'priority' ? classes.cardGroupIcon : ''}`}>
                         {getGroupIcon(group.id)}
                       </div>
                     )}

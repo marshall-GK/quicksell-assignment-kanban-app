@@ -38,18 +38,13 @@ const useStyles = (theme?: any) => ({
       border: 'solid 1px lightgrey',
       padding: '5px',
       borderRadius: '5px',
-      width: '100px'
+      width: '100px',
+      textTransform: 'capitalize'
     },
     '& select:focus-visible': {
       outline: 'none'
     },
-    '& select option': {
-      textTransform: 'capitalize'
-    },
-    '& > select.option:checked': {
-      textTransform: 'capitalize'
-    }
-  }
+  },
 });
 
 export default useStyles;

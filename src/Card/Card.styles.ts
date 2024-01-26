@@ -2,7 +2,7 @@ import { boxShadowColor } from "../Utils/colorScheme";
 
 const useStyles = (theme?: any) => ({
   card: {
-    width: "300px",
+    width: "90%",
     backgroundColor: "white",
     borderRadius: "10px",
     // height: '100px',

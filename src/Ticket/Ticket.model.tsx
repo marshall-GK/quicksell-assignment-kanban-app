@@ -12,7 +12,7 @@ import {
   ticketStatusMap,
 } from "./Ticket.constants";
 import { getPriorityIcons, getTicketStatusIcons } from "../Utils/iconsHelper";
-import { colorGenerator } from "../Utils/utils";
+import { colorGenerator, getCachedState, setStateInCache } from "../Utils/utils";
 
 const useModel = (parentProps: ModelPropTypes) => {
   const { props } = parentProps;
@@ -33,7 +33,10 @@ const useModel = (parentProps: ModelPropTypes) => {
   }, []);
 
   useEffect(() => {
-    handleTicketFilters();
+    if(filter['grouping'] || filter['ordering']) {
+      handleTicketFilters();
+      setStateInCache(filter);
+    }
   }, [filter]);
 
   const fetchTicktAssigmentsData = async () => {
@@ -58,10 +61,15 @@ const useModel = (parentProps: ModelPropTypes) => {
       if(response?.data?.users?.length) {
         setUsers((response?.data?.users as any[])?.map((user) => ({...user, color: colorGenerator()})));
       }
-      setFilter({
-        grouping: "user",
-        ordering: "priority",
-      });
+      const cachedState = getCachedState();
+      if(cachedState['grouping'] || cachedState['ordering']) {
+        setFilter(cachedState);
+      } else {
+        setFilter({
+          grouping: "user",
+          ordering: "priority",
+        });
+      }
     }
   };
 
@@ -130,7 +138,6 @@ const useModel = (parentProps: ModelPropTypes) => {
           break;
       }
     }
-    console.log({ groupKeyList, tempTicketList });
     setFilteredGroupList(groupKeyList);
     setFilteredTicketList(tempTicketList as typeof filteredTicketList);
   };
