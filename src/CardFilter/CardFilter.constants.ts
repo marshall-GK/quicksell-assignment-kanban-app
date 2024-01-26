@@ -1,8 +1,8 @@
 export const filtersList = [
   {
-    key: 'grouping', options: ['By Status', 'By User', 'By Priority'], default: 'By User'
+    key: 'grouping', options: ['status', 'user', 'priority'], default: 'user'
   },
   {
-    key: 'ordering', options: ['Priority', 'Title'], default: 'Priority'
+    key: 'ordering', options: ['priority', 'title'], default: 'priority'
   }
 ]

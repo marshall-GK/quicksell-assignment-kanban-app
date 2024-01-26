@@ -1,25 +1,45 @@
 import * as React from "react";
 import { ViewPropTypes } from "./Card.types";
-import { getPriorityIcons, getTicketStatusIcons } from "../Utils/priorityIcons";
+import { getPriorityIcons, getTicketStatusIcons } from "../Utils/iconsHelper";
 
 const CardView = (props: ViewPropTypes) => {
   const { model, classes } = props;
-  const { data, userName, userAvailable } = model;
+  const {
+    data,
+    userName,
+    userAvailable,
+    selectedFilters,
+    enableStatusIcon,
+    enableUserIcon,
+    userColor,
+  } = model;
   return (
     <div className={classes.card} key={data.id}>
       <div className={classes.cardHeader}>
         <div>{data.id}</div>
-        <div className={"cardUserImg"}>
-          {userName}
-          <span className={`cardUserStatus ${userAvailable ? classes.cardUserStatusActive : ''}`} />
-        </div>
+        {enableUserIcon() ? (
+          <div className={"cardUserImg"} style={{ backgroundColor: userColor }}>
+            {userName}
+            <span
+              className={`cardUserStatus ${
+                userAvailable ? "cardUserStatusActive" : ""
+              }`}
+            />
+          </div>
+        ) : null}
       </div>
       <div className={classes.cardTitle}>
-        <div>{getTicketStatusIcons(data.status)}</div>
+        {enableStatusIcon() ? (
+          <div>{getTicketStatusIcons(data.status)}</div>
+        ) : null}
         <div>{data.title}</div>
       </div>
       <div className={classes.cardFooter}>
-        <div className={classes.cardTag}>{getPriorityIcons(data.priority)}</div>
+        {selectedFilters["grouping"] !== "priority" ? (
+          <div className={classes.cardTag}>
+            {getPriorityIcons(data.priority)}
+          </div>
+        ) : null}
         {data.tag?.map((tag) => (
           <div className={classes.cardTag} key={tag}>
             <span className={classes.tagStatus} />

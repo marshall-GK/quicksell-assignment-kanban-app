@@ -1,3 +1,4 @@
+import { FilterType } from "../Ticket/Ticket.types";
 import useModel from "./CardFilter.model";
 import useStyles from "./CardFilter.styles";
 
@@ -8,7 +9,7 @@ interface StylesProps {
 
 export interface PropTypes extends StylesProps {
   setFilter: (values: any) => void;
-  selectedFilter: any;
+  selectedFilter: FilterType;
 }
 
 export type ModelPropTypes = {

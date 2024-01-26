@@ -4,12 +4,20 @@ import { ModelPropTypes } from "./Card.types";
 
 const useModel = (parentProps: ModelPropTypes) => {
   const { props } = parentProps;
-  const { data, userName, userAvailable } = props;
+  const { selectedFilters } = props;
+
+  const enableStatusIcon = () => {
+    return selectedFilters['grouping'] !== 'status';
+  }
+
+  const enableUserIcon = () => {
+    return selectedFilters['grouping'] !== 'user';
+  }
 
   return {
-    data,
-    userName,
-    userAvailable
+    ...props,
+    enableStatusIcon,
+    enableUserIcon
   };
 };
 

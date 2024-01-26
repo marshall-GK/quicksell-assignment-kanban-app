@@ -7,7 +7,8 @@ import { ReactComponent as NoPriorityIcon } from '../assets/no_priority.svg'
 import { ReactComponent as InCompleteTaskIcon } from '../assets/incomplete.svg'
 import { ReactComponent as InProgressIcon } from '../assets/inprogress.svg'
 import { ReactComponent as DoneIcon } from '../assets/done.svg'
-import { ReactComponent as BackLogIcon } from '../assets/backlog.svg'
+import { ReactComponent as BackLogIcon } from '../assets/lightBacklog.svg'
+import { ReactComponent as CancelledIcon } from '../assets/cancelledTicked.svg'
 
 export const getPriorityIcons = (priority: number) => {
   switch(priority) {
@@ -22,8 +23,9 @@ export const getPriorityIcons = (priority: number) => {
 export const getTicketStatusIcons = (status: string) => {
   switch(status) {
     case 'Todo': return <InCompleteTaskIcon />
-    case 'In Progress': return <InProgressIcon />
+    case 'In progress': return <InProgressIcon />
     case 'Backlog': return <BackLogIcon />
+    case 'Cancelled': return <CancelledIcon />
     default: return <DoneIcon />
   }
 }

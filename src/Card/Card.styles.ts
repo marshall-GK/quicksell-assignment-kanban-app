@@ -1,3 +1,5 @@
+import { boxShadowColor } from "../Utils/colorScheme";
+
 const useStyles = (theme?: any) => ({
   card: {
     width: "300px",
@@ -7,14 +9,15 @@ const useStyles = (theme?: any) => ({
     padding: "15px",
     display: "grid",
     rowGap: "10px",
+    boxShadow: `0px 0px 5px ${boxShadowColor}`
   },
   cardHeader: {
     display: "flex",
     justifyContent: "space-between",
     height: "25px",
-    fontSize: "14px",
+    fontSize: "15px",
     color: "grey",
-    fontWeight: 400,
+    fontWeight: 600,
     alignItems: "center",
   },
   cardTitle: {
@@ -24,6 +27,7 @@ const useStyles = (theme?: any) => ({
     display: 'flex',
     columnGap: '10px',
     // alignItems: 'baseline'
+    width: '95%'
   },
   cardFooter: {
     display: "flex",
@@ -38,11 +42,9 @@ const useStyles = (theme?: any) => ({
     alignItems: "center",
     justifyContent: "center",
     color: "grey",
+    fontWeight: '600'
   },
   cardExtra: {},
-  cardUserStatusActive: {
-    backgroundColor: "green",
-  },
   tagStatus: {
     width: "8px",
     height: "8px",

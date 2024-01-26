@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { ModelPropTypes, UserTicketType, UserType } from "./Ticket.types";
+import {
+  FilterType,
+  ModelPropTypes,
+  UserTicketType,
+  UserType,
+} from "./Ticket.types";
 import { getTicketAssignments } from "../API/ticketDashboard.api";
 import {
-  groupingKeys,
   ticketPriority,
   ticketPriorityNumberMap,
   ticketStatusMap,
 } from "./Ticket.constants";
-import { getPriorityIcons, getTicketStatusIcons } from "../Utils/priorityIcons";
+import { getPriorityIcons, getTicketStatusIcons } from "../Utils/iconsHelper";
+import { colorGenerator } from "../Utils/utils";
 
 const useModel = (parentProps: ModelPropTypes) => {
   const { props } = parentProps;
 
   const [userTicketsList, setUserTickets] = useState<UserTicketType[]>([]);
   const [usersList, setUsers] = useState<UserType[]>([]);
-  const [filter, setFilter] = useState<{ [key: string]: string }>({});
+  const [filter, setFilter] = useState<FilterType>({});
 
   const [filteredTicketList, setFilteredTicketList] = useState<{
     [id: string]: UserTicketType[];
@@ -50,13 +55,17 @@ const useModel = (parentProps: ModelPropTypes) => {
         });
         setFilteredTicketList(ticketArrayToObj);
       }
-      setUsers(response?.data?.users);
+      if(response?.data?.users?.length) {
+        setUsers((response?.data?.users as any[])?.map((user) => ({...user, color: colorGenerator()})));
+      }
       setFilter({
-        grouping: 'By User',
-        ordering: 'Priority'
+        grouping: "user",
+        ordering: "priority",
       });
     }
   };
+
+  
 
   const handleFilter = (filter: { key: string; value: string }) => {
     setFilter((prev) => ({
@@ -76,8 +85,8 @@ const useModel = (parentProps: ModelPropTypes) => {
   };
 
   const getUserData = (userId: string) => {
-    return usersList.filter(user => user.id === userId)?.[0]
-  }
+    return usersList.filter((user) => user.id === userId)?.[0];
+  };
 
   const handleTicketFilters = () => {
     let tempTicketList: UserTicketType[] | typeof filteredTicketList = [
@@ -86,10 +95,10 @@ const useModel = (parentProps: ModelPropTypes) => {
     let groupKeyList = [] as typeof filteredGroupList;
     if (filter["ordering"]) {
       switch (filter["ordering"]) {
-        case "Priority":
+        case "priority":
           tempTicketList = orderByPriority(tempTicketList);
           break;
-        case "Title":
+        case "title":
           tempTicketList = orderByTitle(tempTicketList);
           break;
         default:
@@ -97,10 +106,7 @@ const useModel = (parentProps: ModelPropTypes) => {
       }
     }
     if (filter["grouping"]) {
-      const objKey = (groupingKeys as any)[filter["grouping"]] as
-        | string
-        | undefined;
-      console.log(objKey);
+      const objKey = filter["grouping"] as | string | undefined;
       switch (objKey) {
         case "status":
           tempTicketList = groupBySpecificKey(tempTicketList, "status");
@@ -109,19 +115,22 @@ const useModel = (parentProps: ModelPropTypes) => {
             name: status,
           }));
           break;
-        case "userId":
+        case "user":
           tempTicketList = groupBySpecificKey(tempTicketList, "userId");
           groupKeyList = usersList;
           break;
         case "priority":
           tempTicketList = groupBySpecificKey(tempTicketList, "priority");
-          groupKeyList = ticketPriority?.map((pr) => ({ id: ticketPriorityNumberMap[pr as unknown as number], name: pr }));
+          groupKeyList = ticketPriority?.map((pr) => ({
+            id: ticketPriorityNumberMap[pr as unknown as number],
+            name: pr,
+          }));
           break;
         default:
           break;
       }
     }
-    console.log({groupKeyList, tempTicketList})
+    console.log({ groupKeyList, tempTicketList });
     setFilteredGroupList(groupKeyList);
     setFilteredTicketList(tempTicketList as typeof filteredTicketList);
   };
@@ -178,14 +187,16 @@ const useModel = (parentProps: ModelPropTypes) => {
   };
 
   const getGroupIcon = (data: any) => {
-    const key = (groupingKeys as any)[filter["grouping"]]
+    const key = filter["grouping"];
     switch (key) {
-      case 'status': return getTicketStatusIcons(data);
-      case 'priority': return getPriorityIcons(data);
+      case "status":
+        return getTicketStatusIcons(data);
+      case "priority":
+        return getPriorityIcons(data);
       default:
         break;
     }
-  }
+  };
 
   return {
     filter,
@@ -196,7 +207,7 @@ const useModel = (parentProps: ModelPropTypes) => {
     getShortUserName,
     handleFilter,
     getUserData,
-    getGroupIcon
+    getGroupIcon,
   };
 };
 

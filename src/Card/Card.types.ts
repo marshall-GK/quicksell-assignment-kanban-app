@@ -1,4 +1,4 @@
-import { UserTicketType } from "../Ticket/Ticket.types";
+import { FilterType, UserTicketType } from "../Ticket/Ticket.types";
 import useModel from "./Card.model";
 import useStyles from "./Card.styles";
 
@@ -11,6 +11,8 @@ export interface PropTypes extends StylesProps {
   data: UserTicketType;
   userName: string;
   userAvailable: boolean;
+  selectedFilters: FilterType;
+  userColor?: string;
 }
 
 export type ModelPropTypes = {

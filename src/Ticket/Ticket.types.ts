@@ -1,3 +1,4 @@
+import { filtersList } from "../CardFilter/CardFilter.constants";
 import useModel from "./Ticket.model";
 import useStyles from "./Ticket.styles";
 
@@ -29,4 +30,9 @@ export type UserType = {
   available: boolean;
   id: string;
   name: string;
+  color?: string
 };
+
+export type FilterType = {
+  [key: string]: string
+}

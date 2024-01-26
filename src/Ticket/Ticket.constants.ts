@@ -1,5 +1,17 @@
-export const ticketPriority = ["Urgent", "High", "Medium", "Low", "No priority"];
-export const ticketStatusMap = ['Backlog', 'Todo', 'In progress', 'Done', 'Canceled'];
+export const ticketPriority = [
+  "Urgent",
+  "High",
+  "Medium",
+  "Low",
+  "No priority",
+];
+export const ticketStatusMap = [
+  "Backlog",
+  "Todo",
+  "In progress",
+  "Done",
+  "Cancelled",
+];
 
 export enum ticketPriorityNumberMap {
   "Urgent" = 4,
@@ -7,15 +19,4 @@ export enum ticketPriorityNumberMap {
   "Medium" = 2,
   "Low" = 1,
   "No priority" = 0,
-};
-
-
-export const groupingKeys = {
-  "By Status": "status",
-  "By User": "userId",
-  "By Priority": "priority",
-};
-
-export const sortingKeys = {
-  Priority: "priority",
-};
+}

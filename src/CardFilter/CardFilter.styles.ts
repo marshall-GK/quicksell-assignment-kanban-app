@@ -1,3 +1,5 @@
+import { boxShadowColor } from "../Utils/colorScheme";
+
 const useStyles = (theme?: any) => ({
   filterBlock: {
     position: 'relative'
@@ -6,28 +8,47 @@ const useStyles = (theme?: any) => ({
     display: 'flex',
     alignItems: 'center',
     columnGap: '10px',
-    boxShadow: '0px 0px 5px grey',
-    padding: '2px 5px',
+    boxShadow: `0px 0px 5px ${boxShadowColor}`,
+    padding: '5px 10px',
     borderRadius: '5px',
-    fontSize: '12px',
-    cursor: 'pointer'
+    fontSize: '14px',
+    cursor: 'pointer',
+    fontWeight: '600'
   },
   expandedFilterBlock: {
     backgroundColor: '#f8f8fa',
-    width: '250px',
-    height: '100px',
+    width: '275px',
+    height: '90px',
     position: 'absolute',
     zIndex: 2,
-    boxShadow: '0px 0px 5px #d7d7d7',
-    top: '42px'
+    boxShadow: `0px 0px 5px ${boxShadowColor}`,
+    top: '42px',
+    borderRadius: '10px'
   },
   filters: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '10px 15px',
+    padding: '7px 15px',
     fontSize: '14px',
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
+    color: 'grey',
+    fontWeight: '600',
+    '& select': {
+      border: 'solid 1px lightgrey',
+      padding: '5px',
+      borderRadius: '5px',
+      width: '100px'
+    },
+    '& select:focus-visible': {
+      outline: 'none'
+    },
+    '& select option': {
+      textTransform: 'capitalize'
+    },
+    '& > select.option:checked': {
+      textTransform: 'capitalize'
+    }
   }
 });
 

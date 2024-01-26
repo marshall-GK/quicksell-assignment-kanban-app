@@ -5,7 +5,7 @@ const useStyles = (theme?: any) => ({
   },
   cardBlock: {
     display: "grid",
-    rowGap: "10px",
+    rowGap: "30px",
     alignContent: "baseline",
     minWidth: '300px'
   },
@@ -19,11 +19,11 @@ const useStyles = (theme?: any) => ({
     background: "#0000",
     display: 'flex',
     alignItems: 'center',
-    padding: '0px 25px',
+    padding: '0px 50px',
   },
   mainCardWrapper: {
     backgroundColor: "#f4f5f8",
-    padding: "25px",
+    padding: "30px 50px",
     minHeight: 'calc(100vh - 127px)'
   },
   cardBlockTitle: {

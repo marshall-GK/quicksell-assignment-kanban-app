@@ -31,15 +31,22 @@ const TicketView = (props: ViewPropTypes) => {
       {renderNavBar()}
       <div className={classes.mainCardWrapper}>
         <div className={classes.cardWrapper}>
-          {filteredGroupList?.map((group) => {
+          {filteredGroupList?.map((group, index) => {
             return (
-              <div className={classes.cardBlock} key={group?.id}>
+              <div className={classes.cardBlock} key={`${group.id}${index}`}>
                 <div className={classes.cardBlockTitle}>
                   <div className={classes.cardTitle}>
-                    {filter["grouping"] === "By User" ? (
-                      <div className="cardUserImg">
+                    {filter["grouping"] === "user" ? (
+                      <div
+                        className="cardUserImg"
+                        style={{ backgroundColor: group.color }}
+                      >
                         {getShortUserName(group.name)}
-                        <div className={"cardUserStatus"} />
+                        <div
+                          className={`cardUserStatus ${
+                            group.available ? "cardUserStatusActive" : ""
+                          }`}
+                        />
                       </div>
                     ) : (
                       <div className="cardUserImg">
@@ -69,6 +76,9 @@ const TicketView = (props: ViewPropTypes) => {
                             data={ticket}
                             userName={getShortUserName(userData.name)}
                             userAvailable={userData?.available}
+                            selectedFilters={filter}
+                            key={ticket.id}
+                            userColor={userData.color}
                           />
                         );
                       })
