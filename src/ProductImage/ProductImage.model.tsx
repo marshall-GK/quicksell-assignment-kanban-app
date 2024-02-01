@@ -44,7 +44,7 @@ const useModel = (parentProps: ModelPropTypes) => {
           clearTimeout(timeOutCallRef)
           timeOutCallRef = setTimeout(() => {
             setRetryCount(prev => prev + 1);
-          }, 1000);
+          }, 5000);
         } else {
           setLoading(false);
           setImageError(true);
