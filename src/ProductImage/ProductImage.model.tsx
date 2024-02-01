@@ -10,6 +10,7 @@ const useModel = (parentProps: ModelPropTypes) => {
   const [retryCount, setRetryCount] = useState(0);
   const [imageData, setImageData] = useState<any>('');
   const [errorImage, setErrorImage] = useState(false);
+  const [loading, setLoading] = useState(true);
   
   let timeOutCallRef: any = undefined;
 
@@ -26,11 +27,13 @@ const useModel = (parentProps: ModelPropTypes) => {
   const fetchImage = async () => {
     clearTimeout(timeOutCallRef);
     try {
+      setLoading(true);
       const response = await axios.get(data.url, {responseType: 'arraybuffer'});
       console.log(response);
       if(response.status === 200) {
         const blob = new Blob([response.data]);
         const srcBlob = URL.createObjectURL(blob);
+        setLoading(false);
         setImageData(srcBlob);
       }
 
@@ -43,6 +46,7 @@ const useModel = (parentProps: ModelPropTypes) => {
             setRetryCount(prev => prev + 1);
           }, 1000);
         } else {
+          setLoading(false);
           setImageError(true);
           setErrorImage(true)
         }
@@ -52,6 +56,7 @@ const useModel = (parentProps: ModelPropTypes) => {
 
   return {
     ...props,
+    loading,
     retryCount,
     imageData,
     errorImage

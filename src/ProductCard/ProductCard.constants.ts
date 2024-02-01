@@ -1,7 +1,7 @@
 export const initialState = {};
 
 export const apiResponse = {
-    name: "masks",
+    name: "Masks",
     count: 4,
     images: [
       {
