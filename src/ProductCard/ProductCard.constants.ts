@@ -11,7 +11,6 @@ export const apiResponse = {
       },
       {
         url: "https://cdn.quicksell.co/-LfPe0CWGEWcVYQTYbDw/products/-MVpx91hJWM9aEdBMICb.jpg",
-
         ready: true,
         error: false,
       },
@@ -21,8 +20,7 @@ export const apiResponse = {
         error: false,
       },
       {
-
-        url: "https://cdn.quicksell.co/-LfPe0CWGEWcVYQTYbDw/products/-MVpx91hJWM9aEdBMICd.jpg",
+        url: "https://cdn.quicksell.co/-LfPe0CWGEWcVYQTYbDw/products/-MVpx91hJWM9aEdBMICd.jpgg",
         ready: true,
         error: false,
       },
