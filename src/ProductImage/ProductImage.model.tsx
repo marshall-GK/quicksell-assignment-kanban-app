@@ -7,7 +7,7 @@ import { blob } from "stream/consumers";
 const useModel = (parentProps: ModelPropTypes) => {
   const { props } = parentProps;
   const { data, totalRetry, setImageError } = props;
-  const [retryCount, setRetryCount] = useState(0);
+  const [retryCount, setRetryCount] = useState(1);
   const [imageData, setImageData] = useState<any>('');
   const [errorImage, setErrorImage] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -38,7 +38,6 @@ const useModel = (parentProps: ModelPropTypes) => {
       }
 
     } catch (err) {
-      console.log({err})
       if(err) {
         if (retryCount !== totalRetry) {
           clearTimeout(timeOutCallRef)

@@ -20,7 +20,7 @@ export const apiResponse = {
         error: false,
       },
       {
-        url: "https://cdn.quicksell.co/-LfPe0CWGEWcVYQTYbDw/products/-MVpx91hJWM9aEdBMICd.jpgg",
+        url: "https://cdn.quicksell.co/-LfPe0CWGEWcVYQTYbDw/products/-MVpx91hJWM9aEdBMICd.jpg",
         ready: true,
         error: false,
       },
