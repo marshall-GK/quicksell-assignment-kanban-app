@@ -1,16 +1,17 @@
 {
   "files": {
     "main.css": "/quicksell-assignment-kanban-app/static/css/main.63594932.css",
-    "main.js": "/quicksell-assignment-kanban-app/static/js/main.910649d2.js",
+    "main.js": "/quicksell-assignment-kanban-app/static/js/main.b04754b6.js",
     "static/js/787.561466a8.chunk.js": "/quicksell-assignment-kanban-app/static/js/787.561466a8.chunk.js",
     "index.html": "/quicksell-assignment-kanban-app/index.html",
+    "static/media/spinning-dots.svg": "/quicksell-assignment-kanban-app/static/media/spinning-dots.7d8b3d611158b56edf637f74f22faccb.svg",
     "static/media/exclamation.svg": "/quicksell-assignment-kanban-app/static/media/exclamation.885105e3ba7007b25457b829e814fa2d.svg",
     "main.63594932.css.map": "/quicksell-assignment-kanban-app/static/css/main.63594932.css.map",
-    "main.910649d2.js.map": "/quicksell-assignment-kanban-app/static/js/main.910649d2.js.map",
+    "main.b04754b6.js.map": "/quicksell-assignment-kanban-app/static/js/main.b04754b6.js.map",
     "787.561466a8.chunk.js.map": "/quicksell-assignment-kanban-app/static/js/787.561466a8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.63594932.css",
-    "static/js/main.910649d2.js"
+    "static/js/main.b04754b6.js"
   ]
 }
